@@ -6,7 +6,6 @@ def declare_round_start(user_score, computer_score, round, rounds):
     print(f"--- ROUND {round + 1} ---")
 
 def declare_winner(user_score, computer_score, rounds):
-    # check on rounds value and type
     print("--- GAME OVER ---")
     if user_score > computer_score:
         print(f"You are the overall victor, you won the best of {rounds}!! :D")
@@ -58,4 +57,4 @@ def rock_paper_scissors(rounds):
         declare_winner(user_score, computer_score, rounds)
 
 total_rounds = input("How many rounds would you like to play? ")
-rock_paper_scissors(total_rounds)
+rock_paper_scissors(int(total_rounds))
