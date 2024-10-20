@@ -1,16 +1,15 @@
 import random
 import inquirer
 
-def declare_round_start(round, rounds):
+def declare_round_start(round):
     print("                          ")
     print(f"--- ROUND {round + 1} ---")
-    if round == rounds - 1: print("FINAL ROUND!!")
 
 def declare_winner(user_score, computer_score, rounds):
     print("--- GAME OVER ---")
     print("                          ")
     if user_score > computer_score:
-        print(f"You are the overall victor, you won the first to {rounds}!! :D")
+        print(f"You are the overall victor, you won the first to {rounds} wins!! :D")
     elif user_score < computer_score:
         print("You suck!! You couldn't beat a computer!! :P")
     else: 
@@ -57,9 +56,11 @@ def rock_paper_scissors(rounds):
     user_score = 0
     computer_score = 0
     round = 0
-    # test the below line out, think it works as a single
-    while user_score < rounds | computer_score < rounds:
-        declare_round_start(round, rounds)
+    have_winner = False
+    while not have_winner:
+        # look into round declaration
+        print("round", round)
+        declare_round_start(round)
         user_choice = get_player_choice()
         computer_choice = get_computer_choice()
         results = get_results(user_choice, computer_choice)
@@ -69,13 +70,15 @@ def rock_paper_scissors(rounds):
         print(f"|| Your score:{user_score} || Opponent Score: {computer_score} ||")
         print("                          ")
         round += 1
+        print("round updated to ---> ", round)
+        have_winner = user_score == rounds or computer_score == rounds
     else: 
         declare_winner(user_score, computer_score, rounds)
 
 valid_rounds_value = False
 while not valid_rounds_value:
     try:
-        total_rounds = int(input("How many rounds would you like to play? "))
+        total_rounds = int(input("How many wins would you like to play until? "))
         rock_paper_scissors(total_rounds)
         valid_rounds_value = True
     except:
