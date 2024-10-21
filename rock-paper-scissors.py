@@ -58,8 +58,6 @@ def rock_paper_scissors(rounds):
     round = 0
     have_winner = False
     while not have_winner:
-        # look into round declaration
-        print("round", round)
         declare_round_start(round)
         user_choice = get_player_choice()
         computer_choice = get_computer_choice()
@@ -70,7 +68,6 @@ def rock_paper_scissors(rounds):
         print(f"|| Your score:{user_score} || Opponent Score: {computer_score} ||")
         print("                          ")
         round += 1
-        print("round updated to ---> ", round)
         have_winner = user_score == rounds or computer_score == rounds
     else: 
         declare_winner(user_score, computer_score, rounds)
@@ -79,7 +76,8 @@ valid_rounds_value = False
 while not valid_rounds_value:
     try:
         total_rounds = int(input("How many wins would you like to play until? "))
-        rock_paper_scissors(total_rounds)
-        valid_rounds_value = True
+        if total_rounds > 0:
+            rock_paper_scissors(total_rounds)
+            valid_rounds_value = True
     except:
         print("You have entered an invalid number, please try again")
